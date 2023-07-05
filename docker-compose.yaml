@@ -6,14 +6,27 @@ services:
     restart: on-failure
     ports:
       - "8080:8080"
-  server:
+  server-0:
     image: registry.bottled.codes/peers/server
     build:
       context: .
       target: backend
     restart: on-failure
+    volumes:
+      - .:/app
+    entrypoint: ["./watch.sh","php","src/Server.php"]
+    env_file:
+      - .env
   frontend:
     image: registry.bottled.codes/peers/frontend
     build:
       context: .
       target: web
+    ports:
+      - "443:443"
+      - "80:80"
+    restart: on-failure
+    volumes:
+      - .:/app
+    env_file:
+      - .env

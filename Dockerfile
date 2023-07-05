@@ -28,10 +28,14 @@ RUN composer dump -o --apcu
 FROM build AS backend
 
 RUN install-php-extensions @composer ev sodium zip intl uuid ev pcntl parallel apcu
+RUN apt update && apt install -y inotify-tools && \
+    rm -rf /var/lib/apt/lists/*
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     echo "apc.enable_cli=1" >> $PHP_INI_DIR/php.ini && \
     echo "apc.enable=1" >> $PHP_INI_DIR/php.ini
 
+
+COPY --from=css /usr/local/bin/twcss /usr/local/bin/twcss
 COPY . /app/
 
 ENTRYPOINT ["php","src/Server.php"]
