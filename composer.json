@@ -1,0 +1,18 @@
+{
+    "name": "withinboredom/peers",
+    "description": "Peer reviews",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Withinboredom\\Peers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Robert Landers",
+            "email": "landers.robert@gmail.com"
+        }
+    ],
+    "require": {}
+}
