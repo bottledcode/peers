@@ -19,6 +19,10 @@
         "bottledcode/swytch-framework": "v0.3.3",
         "amphp/log": "v2.0.0-beta.2",
         "bottledcode/php-rql": "dev-master"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     },
     "config": {
         "allow-plugins": {
