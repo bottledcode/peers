@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Withinboredom\\Peers\\": "src/"
+            "Peers\\": "src/"
         }
     },
     "authors": [
@@ -14,5 +14,15 @@
             "email": "landers.robert@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "bottledcode/durable-php": "dev-main",
+        "bottledcode/swytch-framework": "v0.3.3",
+        "amphp/log": "v2.0.0-beta.2",
+        "bottledcode/php-rql": "dev-master"
+    },
+    "config": {
+        "allow-plugins": {
+            "olvlvl/composer-attribute-collector": true
+        }
+    }
 }
