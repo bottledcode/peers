@@ -1,0 +1,19 @@
+version: "3.8"
+name: "peers"
+services:
+  rethinkdb:
+    image: rethinkdb:2.4.2-bullseye-slim
+    restart: on-failure
+    ports:
+      - "8080:8080"
+  server:
+    image: registry.bottled.codes/peers/server
+    build:
+      context: .
+      target: backend
+    restart: on-failure
+  frontend:
+    image: registry.bottled.codes/peers/frontend
+    build:
+      context: .
+      target: web
