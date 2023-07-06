@@ -16,7 +16,6 @@ class LoggedInHomePage
 
     public function render()
     {
-        var_dump('test');
         $user = $this->authentication->getUser();
         $user = print_r($user, true);
         return <<<HTML

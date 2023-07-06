@@ -6,6 +6,19 @@ class CompiledContainer extends DI\CompiledContainer{
     const METHOD_MAPPING = array (
   'Bottledcode\\DurablePhp\\Config\\RethinkDbConfig' => 'get1',
   'Bottledcode\\DurablePhp\\Config\\Config' => 'get2',
+  'Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source' => 'get3',
+  'Bottledcode\\SwytchFramework\\Template\\Interfaces\\AuthenticationServiceInterface' => 'get4',
+  'subEntry1' => 'get5',
+  'Bottledcode\\DurablePhp\\DurableClientInterface' => 'get6',
+  'subEntry2' => 'get7',
+  'subEntry3' => 'get8',
+  'Bottledcode\\DurablePhp\\EntityClientInterface' => 'get9',
+  'subEntry4' => 'get10',
+  'subEntry5' => 'get11',
+  'Bottledcode\\DurablePhp\\OrchestrationClientInterface' => 'get12',
+  'subEntry6' => 'get13',
+  'subEntry7' => 'get14',
+  'Psr\\Log\\LoggerInterface' => 'get15',
 );
 
     protected function get1()
@@ -21,14 +34,87 @@ class CompiledContainer extends DI\CompiledContainer{
     protected function get2()
     {
         return $this->resolveFactory(static fn(\Bottledcode\DurablePhp\Config\RethinkDbConfig $config) => new \Bottledcode\DurablePhp\Config\Config(
-            currentPartition: (int) \array_slice(\explode('-', \gethostname()), -1)[0],
+            currentPartition: (int)\array_slice(\explode('-', \gethostname()), -1)[0],
             storageConfig: $config,
-            totalPartitions: (int) \getenv('TOTAL_PARTITIONS') ?: 3,
-            totalWorkers: (int) \getenv('TOTAL_WORKERS') ?: 32,
-            bootstrapPath: __FILE__,
+            totalPartitions: (int)\getenv('TOTAL_PARTITIONS') ?: 3,
+            totalWorkers: (int)\getenv('TOTAL_WORKERS') ?: 32,
+            bootstrapPath: __DIR__ . '/../src/Bootstrap.php',
             maximumMemoryPerWorker: 128,
             factory: 'make'
         ), 'Bottledcode\\DurablePhp\\Config\\Config');
+    }
+
+    protected function get3()
+    {
+        return $this->resolveFactory(static fn(\Bottledcode\DurablePhp\Config\Config $config) => \Bottledcode\DurablePhp\Abstractions\Sources\SourceFactory::fromConfig($config), 'Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
+    }
+
+    protected function get5()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\DurableClientInterface');
+    }
+
+    protected function get4()
+    {
+        $object = new Peers\Authentication($this->get5());
+        return $object;
+    }
+
+    protected function get7()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\EntityClientInterface');
+    }
+
+    protected function get8()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\OrchestrationClientInterface');
+    }
+
+    protected function get6()
+    {
+        $object = new Bottledcode\DurablePhp\DurableClient($this->get7(), $this->get8());
+        return $object;
+    }
+
+    protected function get10()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Config\\Config');
+    }
+
+    protected function get11()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
+    }
+
+    protected function get9()
+    {
+        $object = new Bottledcode\DurablePhp\EntityClient($this->get10(), $this->get11());
+        return $object;
+    }
+
+    protected function get13()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Config\\Config');
+    }
+
+    protected function get14()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
+    }
+
+    protected function get12()
+    {
+        $object = new Bottledcode\DurablePhp\OrchestrationClient($this->get13(), $this->get14());
+        return $object;
+    }
+
+    protected function get15()
+    {
+        return $this->resolveFactory(static function () {
+            $logger = new \Monolog\Logger('peers');
+            $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Level::Debug));
+            return $logger;
+        }, 'Psr\\Log\\LoggerInterface');
     }
 
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c142348f7ea9d9d42aebd451ccba6a7d",
+    "content-hash": "69330bce80a09774dd2df09ebceb2663",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1027,12 +1027,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bottledcode/durable-php.git",
-                "reference": "7e9c550b682f2da29dc2dca31796d9e50b78c5fe"
+                "reference": "326ca42b2f2e6eb282f5f907dbdabc2a9a9465ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bottledcode/durable-php/zipball/7e9c550b682f2da29dc2dca31796d9e50b78c5fe",
-                "reference": "7e9c550b682f2da29dc2dca31796d9e50b78c5fe",
+                "url": "https://api.github.com/repos/bottledcode/durable-php/zipball/326ca42b2f2e6eb282f5f907dbdabc2a9a9465ea",
+                "reference": "326ca42b2f2e6eb282f5f907dbdabc2a9a9465ea",
                 "shasum": ""
             },
             "require": {
@@ -1076,7 +1076,7 @@
                 "issues": "https://github.com/bottledcode/durable-php/issues",
                 "source": "https://github.com/bottledcode/durable-php/tree/main"
             },
-            "time": "2023-07-05T23:16:17+00:00"
+            "time": "2023-07-05T23:29:43+00:00"
         },
         {
             "name": "bottledcode/php-rql",
@@ -4762,6 +4762,46 @@
                 }
             ],
             "time": "2023-05-30T17:17:10+00:00"
+        },
+        {
+            "name": "withinboredom/nameof",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/withinboredom/nameof.git",
+                "reference": "3b650c53c68bf5f9c26f14f063112fa5e0d0b676"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/withinboredom/nameof/zipball/3b650c53c68bf5f9c26f14f063112fa5e0d0b676",
+                "reference": "3b650c53c68bf5f9c26f14f063112fa5e0d0b676",
+                "shasum": ""
+            },
+            "require-dev": {
+                "pestphp/pest": "^2.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Landers",
+                    "email": "landers.robert@gmail.com"
+                }
+            ],
+            "description": "Get the name of anything",
+            "support": {
+                "issues": "https://github.com/withinboredom/nameof/issues",
+                "source": "https://github.com/withinboredom/nameof/tree/v0.2.1"
+            },
+            "time": "2023-05-04T08:56:55+00:00"
         },
         {
             "name": "withinboredom/response-code",

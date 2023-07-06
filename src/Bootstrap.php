@@ -1,10 +1,22 @@
 <?php
 
+use Bottledcode\DurablePhp\Abstractions\Sources\Source;
+use Bottledcode\DurablePhp\Abstractions\Sources\SourceFactory;
 use Bottledcode\DurablePhp\Config\Config;
 use Bottledcode\DurablePhp\Config\RethinkDbConfig;
+use Bottledcode\DurablePhp\DurableClient;
+use Bottledcode\DurablePhp\DurableClientInterface;
+use Bottledcode\DurablePhp\EntityClient;
+use Bottledcode\DurablePhp\EntityClientInterface;
+use Bottledcode\DurablePhp\OrchestrationClient;
+use Bottledcode\DurablePhp\OrchestrationClientInterface;
 use Bottledcode\DurablePhp\Processor;
+use Bottledcode\SwytchFramework\Template\Interfaces\AuthenticationServiceInterface;
 use DI\ContainerBuilder;
 use DI\FactoryInterface;
+use Peers\Authentication;
+use Peers\Model\Interfaces\User;
+use function Withinboredom\NameOf\nameof;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -31,11 +43,21 @@ function getDependencies(): array
             storageConfig: $config,
             totalPartitions: (int)getenv('TOTAL_PARTITIONS') ?: 3,
             totalWorkers: (int)getenv('TOTAL_WORKERS') ?: 32,
-            bootstrapPath: __FILE__,
+            bootstrapPath: __DIR__ . '/../src/Bootstrap.php',
             maximumMemoryPerWorker: 128,
             factory: 'make'
         ),
-        \Bottledcode\SwytchFramework\Template\Interfaces\AuthenticationServiceInterface::class => \DI\autowire(\Peers\Authentication::class)
+        Source::class => fn(Config $config) => SourceFactory::fromConfig($config),
+        AuthenticationServiceInterface::class => \DI\autowire(Authentication::class),
+        DurableClientInterface::class => \DI\autowire(DurableClient::class),
+        EntityClientInterface::class => \DI\autowire(EntityClient::class),
+        OrchestrationClientInterface::class => \DI\autowire(OrchestrationClient::class),
+        User::class => \DI\autowire(\Peers\Model\Entities\User::class),
+        \Psr\Log\LoggerInterface::class => function () {
+            $logger = new \Monolog\Logger('peers');
+            $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Level::Debug));
+            return $logger;
+        }
     ];
 }
 

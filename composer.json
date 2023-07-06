@@ -25,7 +25,8 @@
         "bottledcode/swytch-framework": "v0.3.3",
         "firebase/php-jwt": "^6.8",
         "guzzlehttp/guzzle": "^7.0",
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "withinboredom/nameof": "v0.2.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
