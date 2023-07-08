@@ -8,6 +8,7 @@ services:
       - "8080:8080"
   server-0:
     image: registry.bottled.codes/peers/server
+    hostname: server-0
     build:
       context: .
       target: backend

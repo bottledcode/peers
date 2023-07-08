@@ -5,7 +5,8 @@ namespace Peers\Components;
 use Bottledcode\SwytchFramework\Hooks\Html\HeadTagFilter;
 use Bottledcode\SwytchFramework\Language\LanguageAcceptor;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
-use Bottledcode\SwytchFramework\Template\Traits\Htmx;use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
+use Bottledcode\SwytchFramework\Template\Traits\Htmx;
+use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
 
 #[Component('Index')]
 class Index
@@ -36,9 +37,11 @@ class Index
                 // Add a listener so you can initialize ClerkJS
                 // once it's loaded.
                 script.addEventListener('load', async function(){
-                    await window.Clerk.load({
-                        // Set load options here...
-                    });
+                    await window.Clerk.load({});
+                    if(Clerk.session && location.pathname === '/') {
+                        location.href = '/reviews'
+                    }
+                    setInterval(() => Clerk.session === null && location.pathname !== '/' ? location.href = '/' : null, 3000)
                 });
                 document.body.appendChild(script);
             JS;
@@ -47,7 +50,7 @@ class Index
         $this->begin();
         ?>
         <!Doctype html>
-        <html lang="<?= $this->language->currentLanguage ?>" >
+        <html lang="<?= $this->language->currentLanguage ?>">
         <head>
             <meta charset="UTF-8">
         </head>
@@ -55,11 +58,19 @@ class Index
             <HomePage></HomePage>
             <LoggedInHomePage></LoggedInHomePage>
         </Route>
+        <Route path="/reviews" method="GET">
+            <ReviewsPage></ReviewsPage>
+        </Route>
+        <Route path="/review/:userId/:round" method="GET">
+            <LeaveReview userId="{{:userId}}" round="{{:round}}"></LeaveReview>
+        </Route>
         <DefaultRoute>
             <ErrorPage></ErrorPage>
         </DefaultRoute>
         <script>
             <?= $script ?>
+
+            setInterval(() => console.log(Clerk.isReady(), Clerk.session), 500)
         </script>
         </html>
         <?php

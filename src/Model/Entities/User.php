@@ -39,7 +39,7 @@ class User extends EntityState implements \Peers\Model\Interfaces\User
 
     public function getNextRound(): int
     {
-        return max($this->finishedRounds) + 1;
+        return empty($this->finishedRounds) ? 1 : max($this->finishedRounds) + 1;
     }
 
     public function updateName(string $firstName, string $lastName): void
