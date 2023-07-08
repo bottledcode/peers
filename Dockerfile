@@ -1,12 +1,12 @@
 FROM php:8.2-zts AS build
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-RUN install-php-extensions @composer
+RUN install-php-extensions @composer ev sodium zip intl uuid ev pcntl parallel apcu
 
 COPY composer.json composer.lock /app/
 WORKDIR /app
 
-RUN composer install --no-dev -o --apcu-autoloader --ignore-platform-reqs
+RUN composer install --no-dev -o --apcu-autoloader
 
 FROM build AS css
 ADD --chmod=777 https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.2/tailwindcss-linux-x64 /usr/local/bin/twcss
@@ -27,7 +27,6 @@ RUN composer dump -o --apcu
 
 FROM build AS backend
 
-RUN install-php-extensions @composer ev sodium zip intl uuid ev pcntl parallel apcu
 RUN apt update && apt install -y inotify-tools && \
     rm -rf /var/lib/apt/lists/*
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
