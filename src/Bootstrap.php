@@ -57,7 +57,8 @@ function getDependencies(): array
             $logger = new \Monolog\Logger('peers');
             $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Level::Debug));
             return $logger;
-        }
+        },
+        'env.SWYTCH_LANGUAGE_DIR' => __DIR__ . '/../languages/',
     ];
 }
 

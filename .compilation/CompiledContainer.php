@@ -9,16 +9,21 @@ class CompiledContainer extends DI\CompiledContainer{
   'Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source' => 'get3',
   'Bottledcode\\SwytchFramework\\Template\\Interfaces\\AuthenticationServiceInterface' => 'get4',
   'subEntry1' => 'get5',
-  'Bottledcode\\DurablePhp\\DurableClientInterface' => 'get6',
-  'subEntry2' => 'get7',
+  'subEntry2' => 'get6',
+  'Bottledcode\\DurablePhp\\DurableClientInterface' => 'get7',
   'subEntry3' => 'get8',
-  'Bottledcode\\DurablePhp\\EntityClientInterface' => 'get9',
-  'subEntry4' => 'get10',
+  'subEntry4' => 'get9',
+  'Bottledcode\\DurablePhp\\EntityClientInterface' => 'get10',
   'subEntry5' => 'get11',
-  'Bottledcode\\DurablePhp\\OrchestrationClientInterface' => 'get12',
-  'subEntry6' => 'get13',
+  'subEntry6' => 'get12',
+  'Bottledcode\\DurablePhp\\OrchestrationClientInterface' => 'get13',
   'subEntry7' => 'get14',
-  'Psr\\Log\\LoggerInterface' => 'get15',
+  'subEntry8' => 'get15',
+  'Peers\\Model\\Interfaces\\User' => 'get16',
+  'Psr\\Log\\LoggerInterface' => 'get17',
+  'env.SWYTCH_LANGUAGE_DIR' => 'get18',
+  'Peers\\ReCache' => 'get19',
+  'subEntry9' => 'get20',
 );
 
     protected function get1()
@@ -54,67 +59,96 @@ class CompiledContainer extends DI\CompiledContainer{
         return $this->delegateContainer->get('Bottledcode\\DurablePhp\\DurableClientInterface');
     }
 
-    protected function get4()
+    protected function get6()
     {
-        $object = new Peers\Authentication($this->get5());
-        return $object;
+        return $this->delegateContainer->get('Peers\\ReCache');
     }
 
-    protected function get7()
+    protected function get4()
     {
-        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\EntityClientInterface');
+        $object = new Peers\Authentication($this->get5(), $this->get6());
+        return $object;
     }
 
     protected function get8()
     {
-        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\OrchestrationClientInterface');
-    }
-
-    protected function get6()
-    {
-        $object = new Bottledcode\DurablePhp\DurableClient($this->get7(), $this->get8());
-        return $object;
-    }
-
-    protected function get10()
-    {
-        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Config\\Config');
-    }
-
-    protected function get11()
-    {
-        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\EntityClientInterface');
     }
 
     protected function get9()
     {
-        $object = new Bottledcode\DurablePhp\EntityClient($this->get10(), $this->get11());
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\OrchestrationClientInterface');
+    }
+
+    protected function get7()
+    {
+        $object = new Bottledcode\DurablePhp\DurableClient($this->get8(), $this->get9());
         return $object;
     }
 
-    protected function get13()
+    protected function get11()
     {
         return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Config\\Config');
     }
 
-    protected function get14()
+    protected function get12()
     {
         return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
     }
 
-    protected function get12()
+    protected function get10()
     {
-        $object = new Bottledcode\DurablePhp\OrchestrationClient($this->get13(), $this->get14());
+        $object = new Bottledcode\DurablePhp\EntityClient($this->get11(), $this->get12());
         return $object;
     }
 
+    protected function get14()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Config\\Config');
+    }
+
     protected function get15()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
+    }
+
+    protected function get13()
+    {
+        $object = new Bottledcode\DurablePhp\OrchestrationClient($this->get14(), $this->get15());
+        return $object;
+    }
+
+    protected function get16()
+    {
+        $object = new Peers\Model\Entities\User([
+        ], [
+        ], '', '', '');
+        return $object;
+    }
+
+    protected function get17()
     {
         return $this->resolveFactory(static function () {
             $logger = new \Monolog\Logger('peers');
             $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Level::Debug));
             return $logger;
         }, 'Psr\\Log\\LoggerInterface');
+    }
+
+    protected function get18()
+    {
+        return '/app/src/../languages';
+    }
+
+    protected function get20()
+    {
+        return $this->delegateContainer->get('Bottledcode\\DurablePhp\\Abstractions\\Sources\\Source');
+    }
+
+    protected function get19()
+    {
+        $object = new Peers\ReCache($this->get20());
+        return $object;
     }
 
 }

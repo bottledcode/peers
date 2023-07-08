@@ -14,7 +14,7 @@ class UserHeader
     {
         $this->begin();
         ?>
-        <div class="bg-stone-100 text-stone-900 dark:bg-gray">
+        <div class="bg-stone-100 text-stone-900 dark:bg-stone-800 dark:text-stone-50">
             <div class="mx-auto max-w-2xl px-3 py-4">
                 <div>
                     <div class="flex items-start">

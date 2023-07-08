@@ -22,7 +22,7 @@
         "amphp/log": "v2.0.0-beta.2",
         "bottledcode/durable-php": "dev-main",
         "bottledcode/php-rql": "dev-master",
-        "bottledcode/swytch-framework": "v0.3.3",
+        "bottledcode/swytch-framework": "dev-main",
         "firebase/php-jwt": "^6.8",
         "guzzlehttp/guzzle": "^7.0",
         "php": ">=8.2",
@@ -30,6 +30,12 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
+    },
+    "replace": {
+        "symfony/polyfill-intl-grapheme": "*",
+        "symfony/polyfill-intl-normalizer": "*",
+        "symfony/polyfill-mbstring": "*",
+        "symfony/polyfill-php80": "*"
     },
     "type": "project"
 }

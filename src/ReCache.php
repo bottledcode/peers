@@ -4,6 +4,7 @@ namespace Peers;
 
 use Bottledcode\DurablePhp\Abstractions\Sources\Source;
 use Closure;
+use Withinboredom\Time\Seconds;
 
 class ReCache
 {
@@ -17,7 +18,7 @@ class ReCache
      * @param Closure<T> $value
      * @return T
      */
-    public function getOrSet(string $key, Closure $value): mixed
+    public function getOrSet(string $key, Closure $value, int $ttl = 500): mixed
     {
         return $this->get($key, 'array') ?? $this->put($key, $value());
     }
@@ -39,9 +40,9 @@ class ReCache
      * @param T $value
      * @return T
      */
-    public function put(string $key, mixed $value): mixed
+    public function put(string $key, mixed $value, int $ttl = 500): mixed
     {
-        $this->source->put($key, $value);
+        $this->source->put($key, $value, new Seconds($ttl));
         return $value;
     }
 }

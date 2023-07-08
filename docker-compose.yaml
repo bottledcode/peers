@@ -2,7 +2,8 @@ version: "3.8"
 name: "peers"
 services:
   rethinkdb:
-    image: rethinkdb:2.4.2-bullseye-slim
+    image: rethinkdb:latest
+    pull_policy: always
     restart: on-failure
     ports:
       - "8080:8080"
@@ -18,8 +19,11 @@ services:
     entrypoint: ["./watch.sh","php","src/Server.php"]
     env_file:
       - .env
+    pull_policy: build
+    stop_grace_period: 60s
   frontend:
     image: registry.bottled.codes/peers/frontend
+    pull_policy: build
     build:
       context: .
       target: web
