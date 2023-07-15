@@ -9,6 +9,7 @@ sigint_handler()
 trap sigint_handler SIGINT
 
 while true; do
+  rm -rf .composer-attribute-collector
   composer dump -o --apcu
   twcss -i public/assets/style.css -o public/assets/web.css --minify
   $@ &

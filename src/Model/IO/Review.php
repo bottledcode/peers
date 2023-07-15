@@ -8,7 +8,7 @@ readonly class Review
 {
     use Evolvable;
 
-    public function __construct(public int $round)
+    public function __construct(public int $round, public string $reviewText, public \DateTimeImmutable $createdAt)
     {
     }
 }

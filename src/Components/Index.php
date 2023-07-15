@@ -41,7 +41,6 @@ class Index
                     if(Clerk.session && location.pathname === '/') {
                         location.href = '/reviews'
                     }
-                    setInterval(() => Clerk.session === null && location.pathname !== '/' ? location.href = '/' : null, 3000)
                 });
                 document.body.appendChild(script);
             JS;

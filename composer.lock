@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15af27fbdcf03888f96789a58180d8c9",
+    "content-hash": "6cfb9b19443b3f81a329bfb44aff445d",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1027,12 +1027,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bottledcode/durable-php.git",
-                "reference": "c267ab9bad2e4277ccbdfb1c10a10e09d8dbed74"
+                "reference": "ac97534bdfaa66f21ff7b32bbe94cb93c7294e65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bottledcode/durable-php/zipball/c267ab9bad2e4277ccbdfb1c10a10e09d8dbed74",
-                "reference": "c267ab9bad2e4277ccbdfb1c10a10e09d8dbed74",
+                "url": "https://api.github.com/repos/bottledcode/durable-php/zipball/ac97534bdfaa66f21ff7b32bbe94cb93c7294e65",
+                "reference": "ac97534bdfaa66f21ff7b32bbe94cb93c7294e65",
                 "shasum": ""
             },
             "require": {
@@ -1076,7 +1076,7 @@
                 "issues": "https://github.com/bottledcode/durable-php/issues",
                 "source": "https://github.com/bottledcode/durable-php/tree/main"
             },
-            "time": "2023-07-06T00:31:44+00:00"
+            "time": "2023-07-08T19:26:26+00:00"
         },
         {
             "name": "bottledcode/php-rql",
@@ -1157,12 +1157,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bottledcode/swytch-framework.git",
-                "reference": "2b841232c2c5b578a207e453beb7a247d26adb2d"
+                "reference": "1cb432a2e5ecb82250aa25e64c6a719eb30c352d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bottledcode/swytch-framework/zipball/2b841232c2c5b578a207e453beb7a247d26adb2d",
-                "reference": "2b841232c2c5b578a207e453beb7a247d26adb2d",
+                "url": "https://api.github.com/repos/bottledcode/swytch-framework/zipball/1cb432a2e5ecb82250aa25e64c6a719eb30c352d",
+                "reference": "1cb432a2e5ecb82250aa25e64c6a719eb30c352d",
                 "shasum": ""
             },
             "require": {
@@ -1219,9 +1219,9 @@
             "description": "A PHP framework for building web applications",
             "support": {
                 "issues": "https://github.com/bottledcode/swytch-framework/issues",
-                "source": "https://github.com/bottledcode/swytch-framework/tree/v0.3.3"
+                "source": "https://github.com/bottledcode/swytch-framework/tree/main"
             },
-            "time": "2023-04-15T14:21:43+00:00"
+            "time": "2023-07-08T11:38:16+00:00"
         },
         {
             "name": "brick/math",

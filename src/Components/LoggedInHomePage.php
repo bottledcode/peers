@@ -7,6 +7,8 @@ use Bottledcode\SwytchFramework\Template\Attributes\Authenticated;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\Htmx;
 use Peers\Authentication;
+use Withinboredom\ResponseCode\HttpResponseCode;
+use function Withinboredom\ResponseCode\http_response_code;
 
 #[Component('LoggedInHomePage')]
 #[Authenticated(visible: true)]
@@ -18,12 +20,12 @@ class LoggedInHomePage
     {
     }
 
-    public function render()
+    public function render(): string
     {
-        $this->redirectClient('/reviews');
-        $user = $this->authentication->getUser();
-        //$user = print_r($user, true);
+        http_response_code(HttpResponseCode::Found);
+        $this->headers->setHeader('Location', '/reviews');
         return <<<HTML
+<div></div>
 HTML;
 
     }

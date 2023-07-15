@@ -13,7 +13,7 @@ ADD --chmod=777 https://github.com/tailwindlabs/tailwindcss/releases/download/v3
 COPY . .
 RUN twcss -i public/assets/style.css -o public/assets/web.css --minify
 
-FROM dunglas/frankenphp:latest AS web
+FROM registry.bottled.codes/base/frankenphp:latest AS web
 
 RUN install-php-extensions @composer dom intl mbstring sodium zip uuid opcache apcu
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
