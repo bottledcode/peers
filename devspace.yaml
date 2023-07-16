@@ -1,0 +1,57 @@
+version: v2beta1
+name: peers
+
+# This is a list of `pipelines` that DevSpace can execute (you can define your own)
+pipelines:
+  # You can run this pipeline via `devspace deploy` (or `devspace run-pipeline deploy`)
+  deploy:
+    run: |-
+      run_dependencies --all                            # 1. Deploy any projects this project needs (see "dependencies")
+      ensure_pull_secrets --all                         # 2. Ensure pull secrets
+      build_images --all -t $(git describe --always) --sequential    # 3. Build, tag (git commit hash) and push all images (see "images")
+      create_deployments --all                          # 4. Deploy Helm charts and manifests specfied as "deployments"
+  # This is the pipeline for the main command: `devspace dev` (or `devspace run-pipeline dev`)
+  dev:
+    run: |-
+      run_dependencies --all       # 1. Deploy any projects this project needs (see "dependencies")
+      ensure_pull_secrets --all    # 2. Ensure pull secrets
+      create_deployments --all     # 3. Deploy Helm charts and manifests specfied as "deployments"
+      start_dev app                # 4. Start dev mode "app" (see "dev" section)
+
+images:
+  webserver:
+    image: registry.bottled.codes/peers/webserver
+    target: web
+    dockerfile: ./Dockerfile
+    context: ./
+    rebuildStrategy: always
+    buildKit:
+      inCluster:
+        noLoad: true
+        namespace: image-builder
+  backend:
+    image: registry.bottled.codes/peers/backend
+    target: backend
+    dockerfile: ./Dockerfile
+    rebuildStrategy: always
+    context: ./
+    buildKit:
+      inCluster:
+        noLoad: true
+        namespace: image-builder
+
+# This is a list of `deployments` that DevSpace can create for this project
+deployments:
+  app:
+    updateImageTags: true
+    kubectl:
+      manifests:
+        - manifests/**
+
+# Define dependencies to other projects with a devspace.yaml
+# dependencies:
+#   api:
+#     git: https://...  # Git-based dependencies
+#     tag: v1.0.0
+#   ui:
+#     path: ./ui        # Path-based dependencies (for monorepos)

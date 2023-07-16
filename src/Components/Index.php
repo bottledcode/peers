@@ -4,6 +4,8 @@ namespace Peers\Components;
 
 use Bottledcode\SwytchFramework\Hooks\Html\HeadTagFilter;
 use Bottledcode\SwytchFramework\Language\LanguageAcceptor;
+use Bottledcode\SwytchFramework\Router\Attributes\Route;
+use Bottledcode\SwytchFramework\Router\Method;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\Htmx;
 use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
@@ -16,6 +18,12 @@ class Index
 
     public function __construct(private LanguageAcceptor $language, private HeadTagFilter $headTagFilter)
     {
+    }
+
+    #[Route(path: '/healthz', method: Method::GET)]
+    public function healthz()
+    {
+        return '';
     }
 
     public function render()
