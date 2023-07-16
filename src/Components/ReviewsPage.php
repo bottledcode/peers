@@ -18,6 +18,7 @@ use Peers\Authentication;
 use Peers\CacheRenderer;
 use Peers\ClerkUser;
 use Peers\Model\Interfaces\User;
+use Withinboredom\ResponseCode\HttpResponseCode;
 
 #[Component('ReviewsPage')]
 #[Authenticated(visible: true)]
@@ -43,7 +44,8 @@ class ReviewsPage
     {
         $user = $this->authentication->getUser();
         if ($user === null) {
-            $this->redirectClient('/');
+            $this->headers->setHeader('redirect', 'Location: /', true);
+            \Withinboredom\ResponseCode\http_response_code(HttpResponseCode::TemporaryRedirect);
             return '<div></div>';
         }
 
