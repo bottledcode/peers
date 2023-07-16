@@ -24,6 +24,7 @@ class LoggedInHomePage
     {
         http_response_code(HttpResponseCode::Found);
         $this->headers->setHeader('Location', '/reviews');
+        http_response_code(HttpResponseCode::Found);
         return <<<HTML
 <div></div>
 HTML;
