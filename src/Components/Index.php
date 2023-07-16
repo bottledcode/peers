@@ -32,7 +32,8 @@ class Index
         $this->headTagFilter->addCss('twcss', '/assets/web.css?v=' . CURRRENT_COMMIT);
 
         $apiKey = getenv('CLERK_PUBLIC_API_KEY');
-        $script = <<<JS
+        if (!str_starts_with($_SERVER['REQUEST_URI'], '/review/')) {
+            $script = <<<JS
                 const frontend_api = "$apiKey";
 
                 // Create a script that will be loaded asynchronously in
@@ -52,7 +53,10 @@ class Index
                 });
                 document.body.appendChild(script);
             JS;
-        $script = $this->dangerous($script);
+            $script = $this->dangerous($script);
+        } else {
+            $script = '';
+        }
 
         $this->begin();
         ?>
@@ -76,8 +80,6 @@ class Index
         </DefaultRoute>
         <script>
             <?= $script ?>
-
-            setInterval(() => console.log(Clerk.isReady(), Clerk.session), 500)
         </script>
         </html>
         <?php
