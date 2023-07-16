@@ -46,6 +46,11 @@ spec:
                     app.kubernetes.io/name: swytch-peers
                     app.kubernetes.io/instance: web
               weight: 100
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
 ---
 kind: Service
 apiVersion: v1
@@ -65,3 +70,33 @@ spec:
       targetPort: 80
       protocol: TCP
       name: http
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: peers-web
+  namespace: swytch-peers
+  labels:
+    app.kubernetes.io/name: swytch-peers
+    app.kubernetes.io/instance: web
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/issue-temporary-certificate: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - peers.bottled.codes
+      secretName: peers-web-tls
+  rules:
+    - host: peers.bottled.codes
+      http:
+        paths:
+          - backend:
+              service:
+                name: peers-web
+                port:
+                  number: 80
+            pathType: Prefix
+            path: /
