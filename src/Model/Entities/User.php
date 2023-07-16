@@ -2,6 +2,7 @@
 
 namespace Peers\Model\Entities;
 
+use Bottledcode\DurablePhp\Logger;
 use Bottledcode\DurablePhp\State\EntityState;
 use Crell\Serde\Attributes\DictionaryField;
 use Crell\Serde\Attributes\SequenceField;
@@ -25,7 +26,8 @@ class User extends EntityState implements \Peers\Model\Interfaces\User
 
     public function addReview(Review $review): void
     {
-        $this->reviews[] = $review;
+        Logger::always('Adding review');
+        $this->reviews[] = $review->with(number: count($this->reviews) + 1);
     }
 
     public function finishRound(int $round): void
@@ -77,7 +79,7 @@ class User extends EntityState implements \Peers\Model\Interfaces\User
     public function getListOfReviews(int|null $round = null): array
     {
         $round ??= $this->getNextRound();
-        return array_filter($this->reviews, static fn(Review $review) => $review->round === $round);
+        return array_filter($this->reviews, static fn(Review $review) => $review->round <= $round);
     }
 
     public function getNextRound(): int
@@ -87,6 +89,6 @@ class User extends EntityState implements \Peers\Model\Interfaces\User
 
     public function getPublishedReviews(\DateTimeImmutable $now = new \DateTimeImmutable()): array
     {
-        return array_filter($this->getListOfReviews(), static fn(Review $review) => $review->createdAt <= $now);
+        return array_reverse(array_filter($this->getListOfReviews(), static fn(Review $review) => $review->createdAt <= $now), true);
     }
 }

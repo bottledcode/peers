@@ -103,22 +103,15 @@ class LeaveReview
             // start up an orchestration if it doesn't exist
             RuntimeStatus::Unknown => $this->client->startNew(
                 ReviewProcess::class,
-                Serializer::serialize(new ReviewInput(StateId::fromEntityId($entityId), new \DateTimeImmutable('+7 days'), $round)),
+                Serializer::serialize(new ReviewInput(StateId::fromEntityId($entityId), $round)),
                 $userId . '-' . $round),
             // there are lots of failures in development, so just purge and restart
             RuntimeStatus::Failed => $this->client->purge(new OrchestrationInstance(ReviewProcess::class, $userId . '-' . $round)) || $this->client->startNew(
-                ReviewProcess::class,
-                Serializer::serialize(new ReviewInput(StateId::fromEntityId($entityId), new \DateTimeImmutable('+7 days'), $round)),
-                $userId . '-' . $round),
+                    ReviewProcess::class,
+                    Serializer::serialize(new ReviewInput(StateId::fromEntityId($entityId), $round)),
+                    $userId . '-' . $round),
             default => null,
         };
-
-        // see if we are logged in as that user
-        $loggedInUser = $this->authentication->getUser();
-        if ($loggedInUser and StateId::fromString($loggedInUser->externalId)->toEntityId()->id === $userId) {
-            // we are logged in as the user we are trying to review
-            // todo: show current review status
-        }
 
         $this->begin();
         ?>

@@ -11,10 +11,12 @@ readonly class ReviewInput
     public function __construct(
         public StateId $userId,
 
-        #[DateField]
-        public \DateTimeImmutable $expiration,
-
         public int $round,
+
+        #[DateField]
+        public \DateTimeImmutable $expiration = new \DateTimeImmutable('+7 days'),
+
+        public int $maxHoldMinutes = 120,
     )
     {
     }

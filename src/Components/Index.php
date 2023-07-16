@@ -21,7 +21,7 @@ class Index
     public function render()
     {
         $this->headTagFilter->setTitle('Peer Reviews');
-        $this->headTagFilter->addCss('twcss', '/assets/web.css');
+        $this->headTagFilter->addCss('twcss', '/assets/web.css?v=' . CURRRENT_COMMIT);
 
         $apiKey = getenv('CLERK_PUBLIC_API_KEY');
         $script = <<<JS

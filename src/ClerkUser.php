@@ -32,12 +32,6 @@ readonly class ClerkUser
     {
     }
 
-    public function with(array|null $privateMetadata = null, string|null $externalId = null): static
-    {
-        $fields = array_filter(func_get_args());
-        return $this->_with(...$fields, changed: true);
-    }
-
     public function generateUserProfileLink(): string
     {
         return getenv('CLERK_FRONTEND_API') . '/user';

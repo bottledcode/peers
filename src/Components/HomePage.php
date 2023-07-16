@@ -16,8 +16,8 @@ class HomePage
     {
         $this->begin();
         ?>
-        <body>
-        <div class="bg-white">
+        <body class="bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-50">
+        <div>
             <div class="relative isolate px-6 pt-14 lg:px-8">
                 <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                      aria-hidden="true">
@@ -36,10 +36,10 @@ class HomePage
                         -->
                     </div>
                     <div class="text-center">
-                        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                        <h1 class="text-4xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-6xl">
                             <?= p__('title', 'Peers') ?>
                         </h1>
-                        <p class="mt-6 text-lg leading-8 text-gray-600">
+                        <p class="mt-6 text-lg leading-8 text-stone-600 dark:text-stone-50">
                             <?= __('A simple, asynchronous peer review tool.') ?>
                         </p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">

@@ -15,7 +15,7 @@ RUN twcss -i public/assets/style.css -o public/assets/web.css --minify
 
 FROM registry.bottled.codes/base/frankenphp:latest AS web
 
-RUN install-php-extensions @composer dom intl mbstring sodium zip uuid opcache apcu
+RUN install-php-extensions @composer dom intl mbstring sodium zip uuid apcu
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
 	echo "opcache.jit_buffer_size=100M" >> $PHP_INI_DIR/php.ini
 

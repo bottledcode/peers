@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Peers\n"
-"POT-Creation-Date: 2023-07-08 10:50+0200\n"
+"POT-Creation-Date: 2023-07-16 10:25+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob Landers <landers.robert@gmail.com>\n"
 "Language-Team: Swytch Translators\n"
@@ -46,12 +46,12 @@ msgstr "Een eenvoudig, asynchroon hulpmiddel voor intercollegiale toetsing."
 msgid "Get started"
 msgstr "Aan de slag"
 
-#: Components/LeaveReview.php:76
+#: Components/LeaveReview.php:140
 #, php-format
 msgid "Peer review for %s"
 msgstr "Peer review voor %s"
 
-#: Components/LeaveReview.php:78
+#: Components/LeaveReview.php:142
 #, php-format
 msgid ""
 "%1$s %2$s is asking for professional feedback. Please be honest and "
@@ -62,7 +62,7 @@ msgstr ""
 "constructief. Uw beoordeling is anoniem tenzij u uw naam in de "
 "beoordelingstekst vermeldt."
 
-#: Components/LeaveReview.php:81
+#: Components/LeaveReview.php:145
 msgid ""
 "Feel free to schedule some 1:1 time together, if you prefer to give feedback "
 "face-to-face."
@@ -70,33 +70,113 @@ msgstr ""
 "Voel je vrij om wat 1:1 tijd samen in te plannen als je liever persoonlijke "
 "feedback geeft."
 
-#: Components/LeaveReview.php:96
+#: Components/LeaveReview.php:159
 #, php-format
 msgid "What is something %s should continue doing?"
 msgstr "Wat is iets dat %s zou moeten blijven doen?"
 
-#: Components/LeaveReview.php:101
+#: Components/LeaveReview.php:164
 #, php-format
 msgid "What is something %s should stop doing?"
 msgstr "Wat is iets waarmee %s zou moeten stoppen?"
 
-#: Components/LeaveReview.php:106
+#: Components/LeaveReview.php:169
 #, php-format
 msgid "What is something %s should start doing?"
 msgstr "Wat moet %s nieuw gaan doen?"
 
-#: Components/LeaveReview.php:111
+#: Components/LeaveReview.php:174
 #, php-format
 msgid "Is there anything else you want %s to know?"
 msgstr "Is er nog iets dat u %s wilt laten weten?"
 
-#: Components/LeaveReview.php:123
+#: Components/LeaveReview.php:187
 msgid "Send it"
 msgstr "Verstuur het"
 
-#: Components/ReviewsPage.php:59
+#: Components/ReviewsPage.php:67 Components/ReviewsPage.php:209
+msgid "Open"
+msgstr "Open"
+
+#: Components/ReviewsPage.php:81
+msgid "Close"
+msgstr "Sluiten"
+
+#: Components/ReviewsPage.php:155
 msgid "Want to receive some reviews? Share this link with your peers:"
 msgstr "Wilt u beoordelingen ontvangen? Deel deze link met uw collega's:"
+
+#: Components/ReviewsPage.php:182
+msgid "You have a pending review"
+msgid_plural "You have pending reviews"
+msgstr[0] "Je hebt een beoordeling in behandeling"
+msgstr[1] "Je hebt beoordelingen in behandeling"
+
+#: Components/ReviewsPage.php:185
+msgid ""
+"(reviews are intentionally delayed to protect the privacy of the reviewer)"
+msgstr ""
+"(beoordelingen worden opzettelijk uitgesteld om de privacy van de "
+"beoordelaar te beschermen)"
+
+#: Components/ReviewsPage.php:199
+#, php-format
+msgid "Round: %s"
+msgid_plural "Round: %s"
+msgstr[0] "Rond: %s"
+msgstr[1] "Rond: %s"
+
+#: Components/ReviewsPage.php:200
+#, php-format
+msgid "Review number: %s"
+msgid_plural "Review number: %s"
+msgstr[0] "Beoordelingsnummer: %s"
+msgstr[1] "Beoordelingsnummer: %s"
+
+#: Components/ReviewsPage.php:214
+#, php-format
+msgid "Published %s ago"
+msgstr "%s geleden geplaatst"
+
+#: Components/ReviewsPage.php:225
+#, php-format
+msgid "Discover any issues or have any questions? Email %1$s support %2$s"
+msgstr "Problemen ontdekt of vragen? E-mail %1$s ondersteuning %2$s"
+
+#: Components/ReviewsPage.php:244
+msgctxt "time-years"
+msgid "y"
+msgstr "j"
+
+#: Components/ReviewsPage.php:245
+msgctxt "time-month"
+msgid "m"
+msgstr "m"
+
+#: Components/ReviewsPage.php:246
+msgctxt "time-week"
+msgid "w"
+msgstr "w"
+
+#: Components/ReviewsPage.php:247
+msgctxt "time-day"
+msgid "d"
+msgstr "d"
+
+#: Components/ReviewsPage.php:248
+msgctxt "time-hour"
+msgid "h"
+msgstr "u"
+
+#: Components/ReviewsPage.php:249
+msgctxt "time-minute"
+msgid "m"
+msgstr "m"
+
+#: Components/ReviewsPage.php:250
+msgctxt "time-second"
+msgid "s"
+msgstr "s"
 
 #: Components/UserHeader.php:44
 msgid "Request A Review"

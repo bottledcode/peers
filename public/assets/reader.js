@@ -1,5 +1,7 @@
-const quill = new Quill('#viewer', {
-	theme: 'snow',
-	readOnly: true,
-});
-quill.setContents(JSON.parse(document.getElementById('message').value));
+function read(id, text) {
+    const quill = new Quill('#' + id, {
+        theme: 'snow',
+        readOnly: true,
+    });
+    quill.setContents(JSON.parse(text));
+}

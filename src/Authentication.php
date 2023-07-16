@@ -89,7 +89,9 @@ class Authentication implements AuthenticationServiceInterface
         $this->client->signalEntity($entityId, 'updateName', [$user->firstName, $user->lastName]);
         $this->client->signalEntity($entityId, 'updateImage', [$user->imageUrl]);
 
-        return $user->with(externalId: $entityId);
+        $user = $user->with(externalId: (string) StateId::fromEntityId($entityId));
+
+        return $user;
     }
 
     public function isAuthorizedVia(BackedEnum ...$role): bool
