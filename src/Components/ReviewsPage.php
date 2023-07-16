@@ -122,7 +122,7 @@ class ReviewsPage
                 <!-- loading animation -->
                 <div class="h-[25vh] w-[25vw] md:w-16 md:h-16 transition ease-in-out duration-150">
                     <svg style="animation: spin 1s linear infinite;"
-                         class="animate-spin -ml-1 mr-3 md:h-16 md:w-16 h-[25vh] w-[25vw] text-white"
+                         class="animate-spin -ml-1 mr-3 md:h-16 md:w-16 h-[25vh] w-[25vw] text-stone-900 dark:text-stone-50"
                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                 stroke-width="4"></circle>
