@@ -134,6 +134,9 @@ class LeaveReview
                         <p>
                             <?= __("Feel free to schedule some 1:1 time together, if you prefer to give feedback face-to-face.") ?>
                         </p>
+                        <p class="pt-2 text-stone-600">
+                            <?= __("This page is not tracked. There are no cookies. The IP address is not logged.") ?>
+                        </p>
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
                         <div class="shadow sm:rounded-md">
