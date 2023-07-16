@@ -24,7 +24,6 @@ images:
     target: web
     dockerfile: ./Dockerfile
     context: ./
-    rebuildStrategy: always
     buildKit:
       inCluster:
         noLoad: true
@@ -33,7 +32,6 @@ images:
     image: registry.bottled.codes/peers/backend
     target: backend
     dockerfile: ./Dockerfile
-    rebuildStrategy: always
     context: ./
     buildKit:
       inCluster:

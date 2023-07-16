@@ -36,5 +36,3 @@ spec:
                     app.kubernetes.io/instance: backend
               weight: 100
   replicas: 12
-  updateStrategy:
-    type: OnDelete

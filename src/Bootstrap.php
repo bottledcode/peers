@@ -55,7 +55,10 @@ function getDependencies(): array
         User::class => \DI\autowire(\Peers\Model\Entities\User::class),
         \Psr\Log\LoggerInterface::class => function () {
             $logger = new \Monolog\Logger('peers');
-            $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Level::Debug));
+            $handler = new \Monolog\Handler\StreamHandler('php://stdout', \Monolog\Level::Debug);
+            $handler->setFormatter(new Monolog\Formatter\JsonFormatter());
+            $logger->pushHandler($handler);
+
             return $logger;
         },
         'env.SWYTCH_LANGUAGE_DIR' => __DIR__ . '/../languages/',
