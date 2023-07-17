@@ -2,6 +2,7 @@
 
 namespace Peers\Components;
 
+use Bottledcode\SwytchFramework\Hooks\Html\HeadTagFilter;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
 
@@ -10,8 +11,14 @@ class ErrorPage
 {
     use RegularPHP;
 
+    public function __construct(private readonly HeadTagFilter $headTagFilter)
+    {
+    }
+
     public function render()
     {
+        $this->headTagFilter->setTitle(__('Page not found'));
+
         $this->begin();
         ?>
         <body class="h-full bg-stone-50 dark:bg-stone-800 text-stone-900 dark:text-stone-50">

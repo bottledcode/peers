@@ -13,12 +13,13 @@ class Loading
     use Htmx;
     use RegularPHP;
 
-    public function __construct(private HeadTagFilter $htmlHeaders)
+    public function __construct(private readonly HeadTagFilter $htmlHeaders)
     {
     }
 
     public function render(int $wait, string $next): string
     {
+        $this->htmlHeaders->setTitle('Loading...');
         $this->htmlHeaders->addLines('reload', "<meta http-equiv=\"refresh\" content=\"$wait; url=$next\">");
         $this->begin();
         ?>

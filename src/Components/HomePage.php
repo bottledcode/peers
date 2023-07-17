@@ -30,6 +30,8 @@ class HomePage
 
         $this->headTagFilter->setTwitterCard('app', null, '@withinboredom');
 
+        $this->headTagFilter->setTitle(__('Peers | Peer Review Platform for the Open Source Community'));
+
         $this->begin();
         ?>
         <body class="bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-50">

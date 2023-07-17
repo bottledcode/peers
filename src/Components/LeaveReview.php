@@ -29,9 +29,9 @@ class LeaveReview
 
     public function __construct(
         private readonly DurableClientInterface $client,
-        private readonly Headers                $headers,
-        private readonly Authentication         $authentication,
-        private readonly HeadTagFilter          $headTagFilter,
+        private readonly Headers $headers,
+        private readonly Authentication $authentication,
+        private readonly HeadTagFilter $headTagFilter,
     )
     {
     }
@@ -72,10 +72,6 @@ class LeaveReview
         return $this->end();
     }
 
-    private function currentUri(): string {
-        return 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    }
-
     public function render(string $userId, int $round)
     {
         // see if the user exists
@@ -102,12 +98,14 @@ class LeaveReview
         }
 
         $this->headTagFilter->setOpenGraph(
-                pageUrl: $this->currentUri(),
-                title: 'Peer Reviews',
-                description: 'Leave a review for ' . $snapshot->getFirstName() . ' ' . $snapshot->getLastName() . '.',
-                imageUrl:  $snapshot->getImageUrl(),
-                locale: 'en_US'
+            pageUrl: $this->currentUri(),
+            title: 'Peer Reviews',
+            description: 'Leave a review for ' . $snapshot->getFirstName() . ' ' . $snapshot->getLastName() . '.',
+            imageUrl: $snapshot->getImageUrl(),
+            locale: 'en_US'
         );
+
+        $this->headTagFilter->setTitle('Review ' . $snapshot->getFirstName() . ' ' . $snapshot->getLastName());
 
         // send the round to the orchestration if it is valid
         $status = $this->client->getStatus(new OrchestrationInstance(ReviewProcess::class, $userId . '-' . $round));
@@ -202,5 +200,10 @@ class LeaveReview
         </body>
         <?php
         return $this->end();
+    }
+
+    private function currentUri(): string
+    {
+        return 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     }
 }

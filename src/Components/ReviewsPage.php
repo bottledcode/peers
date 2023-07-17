@@ -106,6 +106,7 @@ class ReviewsPage
 
         $this->htmlHeaders->addCss('snow-theme', '/assets/quill.snow.css');
         $this->htmlHeaders->addCss('snow-disabled', '/assets/quill.snow.disabled.css');
+        $this->htmlHeaders->setTitle('Your Reviews');
 
         /**
          * @var User $snapshot
