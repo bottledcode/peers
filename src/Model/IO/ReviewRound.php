@@ -4,9 +4,8 @@ namespace Peers\Model\IO;
 
 use Bottledcode\DurablePhp\State\Ids\StateId;
 use Crell\Serde\Attributes\DateField;
-use Crell\Serde\Attributes\SequenceField;
 
-readonly class ReviewInput
+readonly class ReviewRound
 {
     public function __construct(
         public StateId $userId,

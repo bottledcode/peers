@@ -18,7 +18,7 @@ use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
 use Peers\Authentication;
 use Peers\Model\Interfaces\User;
 use Peers\Model\IO\Review;
-use Peers\Model\IO\ReviewInput;
+use Peers\Model\IO\ReviewRound;
 use Peers\Model\Orchestrations\ReviewProcess;
 
 #[Component('LeaveReview')]
@@ -103,12 +103,12 @@ class LeaveReview
             // start up an orchestration if it doesn't exist
             RuntimeStatus::Unknown => $this->client->startNew(
                 ReviewProcess::class,
-                Serializer::serialize(new ReviewInput(StateId::fromEntityId($entityId), $round)),
+                Serializer::serialize(new ReviewRound(StateId::fromEntityId($entityId), $round)),
                 $userId . '-' . $round),
             // there are lots of failures in development, so just purge and restart
             RuntimeStatus::Failed => $this->client->purge(new OrchestrationInstance(ReviewProcess::class, $userId . '-' . $round)) || $this->client->startNew(
                     ReviewProcess::class,
-                    Serializer::serialize(new ReviewInput(StateId::fromEntityId($entityId), $round)),
+                    Serializer::serialize(new ReviewRound(StateId::fromEntityId($entityId), $round)),
                     $userId . '-' . $round),
             default => null,
         };

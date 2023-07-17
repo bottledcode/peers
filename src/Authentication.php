@@ -4,13 +4,16 @@ namespace Peers;
 
 use BackedEnum;
 use Bottledcode\DurablePhp\DurableClientInterface;
+use Bottledcode\DurablePhp\Logger;
 use Bottledcode\DurablePhp\State\EntityId;
 use Bottledcode\DurablePhp\State\Ids\StateId;
 use Bottledcode\DurablePhp\State\Serializer;
 use Bottledcode\SwytchFramework\Template\Interfaces\AuthenticationServiceInterface;
+use Firebase\JWT\BeforeValidException;
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWK;
 use Firebase\JWT\JWT;
+use Firebase\JWT\SignatureInvalidException;
 use GuzzleHttp\Client;
 use Peers\Model\Interfaces\User;
 
@@ -50,7 +53,23 @@ class Authentication implements AuthenticationServiceInterface
 
         try {
             $jwt = JWT::decode($session, JWK::parseKeySet($keys));
-        } catch (ExpiredException) {
+        } catch(\InvalidArgumentException) {
+            Logger::error('JWK expired or invalid!!');
+            return null;
+        } catch(\DomainException) {
+            Logger::error('logical error while decoding token');
+            return null;
+        } catch(SignatureInvalidException) {
+            Logger::error('signature invalid');
+            return null;
+        } catch(BeforeValidException) {
+            Logger::error('token not yet valid');
+            return null;
+        } catch(ExpiredException) {
+            Logger::error('token expired');
+            return null;
+        } catch(\UnexpectedValueException) {
+            Logger::error('token invalid');
             return null;
         }
 

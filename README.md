@@ -8,3 +8,5 @@ This is proof-of-concept usage of the [Swytch Framework](https://github.com/bott
 and [Durable PHP](https://github.com/bottledcode/durable-php).
 
 Front-end components are in [src/Components](src/Components) and the model lives in [src/Model](src/Model).
+
+The browser is bootstrapped in [public/index.php](public/index.php).
