@@ -72,6 +72,10 @@ class LeaveReview
         return $this->end();
     }
 
+    private function currentUri(): string {
+        return 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    }
+
     public function render(string $userId, int $round)
     {
         // see if the user exists
@@ -96,6 +100,14 @@ class LeaveReview
             http_response_code(404);
             return "<ErrorPage></ErrorPage>";
         }
+
+        $this->headTagFilter->setOpenGraph(
+                pageUrl: $this->currentUri(),
+                title: 'Peer Reviews',
+                description: 'Leave a review for ' . $snapshot->getFirstName() . ' ' . $snapshot->getLastName() . '.',
+                imageUrl:  $snapshot->getImageUrl(),
+                locale: 'en_US'
+        );
 
         // send the round to the orchestration if it is valid
         $status = $this->client->getStatus(new OrchestrationInstance(ReviewProcess::class, $userId . '-' . $round));
