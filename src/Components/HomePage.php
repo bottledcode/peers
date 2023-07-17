@@ -2,7 +2,6 @@
 
 namespace Peers\Components;
 
-use Bottledcode\SwytchFramework\Template\Attributes\Authenticated;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
 use Peers\Authentication;
@@ -12,7 +11,9 @@ class HomePage
 {
     use RegularPHP;
 
-    public function __construct(private Authentication $authentication) {}
+    public function __construct(private Authentication $authentication)
+    {
+    }
 
     public function render()
     {
@@ -48,9 +49,10 @@ class HomePage
                         </p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
                             <a
-                                href="<?= $user === null ? getenv('SIGNIN_URL') : '/reviews' ?>"
-                               class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                <?= __('Get started') ?>
+                                    href="<?= $user === null ? getenv('SIGNIN_URL') : '/reviews' ?>"
+                                    class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                <?= $user === null ? __('Login') : __('See your reviews') ?>
                             </a>
                         </div>
                     </div>

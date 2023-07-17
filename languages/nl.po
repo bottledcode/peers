@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Peers\n"
-"POT-Creation-Date: 2023-07-16 12:55+0200\n"
+"POT-Creation-Date: 2023-07-17 19:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Rob Landers <landers.robert@gmail.com>\n"
 "Language-Team: Swytch Translators\n"
@@ -33,18 +33,22 @@ msgstr "Sorry, we konden de pagina die u zocht niet vinden."
 msgid "Go back home"
 msgstr "Ga terug naar huis"
 
-#: Components/HomePage.php:40
+#: Components/HomePage.php:45
 msgctxt "title"
 msgid "Peers"
 msgstr "Peers"
 
-#: Components/HomePage.php:43
+#: Components/HomePage.php:48
 msgid "A simple, asynchronous peer review tool."
 msgstr "Een eenvoudig, asynchroon hulpmiddel voor intercollegiale toetsing."
 
-#: Components/HomePage.php:48
-msgid "Get started"
-msgstr "Aan de slag"
+#: Components/HomePage.php:55
+msgid "Login"
+msgstr "Inloggen"
+
+#: Components/HomePage.php:55
+msgid "See your reviews"
+msgstr "Bekijk uw beoordelingen"
 
 #: Components/LeaveReview.php:130
 #, php-format
@@ -101,90 +105,97 @@ msgstr "Is er nog iets dat u %s wilt laten weten?"
 msgid "Send it"
 msgstr "Verstuur het"
 
-#: Components/ReviewsPage.php:69 Components/ReviewsPage.php:211
+#: Components/ReviewsPage.php:68 Components/ReviewsPage.php:194
 msgid "Open"
 msgstr "Open"
 
-#: Components/ReviewsPage.php:83
+#: Components/ReviewsPage.php:82
 msgid "Close"
 msgstr "Sluiten"
 
-#: Components/ReviewsPage.php:157
+#: Components/ReviewsPage.php:140
 msgid "Want to receive some reviews? Share this link with your peers:"
 msgstr "Wilt u beoordelingen ontvangen? Deel deze link met uw collega's:"
 
-#: Components/ReviewsPage.php:184
+#: Components/ReviewsPage.php:167
 msgid "You have a pending review"
 msgid_plural "You have pending reviews"
 msgstr[0] "Je hebt een beoordeling in behandeling"
 msgstr[1] "Je hebt beoordelingen in behandeling"
 
-#: Components/ReviewsPage.php:187
+#: Components/ReviewsPage.php:170
 msgid ""
 "(reviews are intentionally delayed to protect the privacy of the reviewer)"
 msgstr ""
 "(beoordelingen worden opzettelijk uitgesteld om de privacy van de "
 "beoordelaar te beschermen)"
 
-#: Components/ReviewsPage.php:201
+#: Components/ReviewsPage.php:184
 #, php-format
 msgid "Round: %s"
 msgid_plural "Round: %s"
 msgstr[0] "Rond: %s"
 msgstr[1] "Rond: %s"
 
-#: Components/ReviewsPage.php:202
+#: Components/ReviewsPage.php:185
 #, php-format
 msgid "Review number: %s"
 msgid_plural "Review number: %s"
 msgstr[0] "Beoordelingsnummer: %s"
 msgstr[1] "Beoordelingsnummer: %s"
 
-#: Components/ReviewsPage.php:216
+#: Components/ReviewsPage.php:199
 #, php-format
 msgid "Published %s ago"
 msgstr "%s geleden geplaatst"
 
-#: Components/ReviewsPage.php:227
+#: Components/ReviewsPage.php:210
 #, php-format
 msgid "Discover any issues or have any questions? Email %1$s support %2$s"
 msgstr "Problemen ontdekt of vragen? E-mail %1$s ondersteuning %2$s"
 
-#: Components/ReviewsPage.php:246
+#: Components/ReviewsPage.php:229
 msgctxt "time-years"
 msgid "y"
 msgstr "j"
 
-#: Components/ReviewsPage.php:247
+#: Components/ReviewsPage.php:230
 msgctxt "time-month"
 msgid "m"
 msgstr "m"
 
-#: Components/ReviewsPage.php:248
+#: Components/ReviewsPage.php:231
 msgctxt "time-week"
 msgid "w"
 msgstr "w"
 
-#: Components/ReviewsPage.php:249
+#: Components/ReviewsPage.php:232
 msgctxt "time-day"
 msgid "d"
 msgstr "d"
 
-#: Components/ReviewsPage.php:250
+#: Components/ReviewsPage.php:233
 msgctxt "time-hour"
 msgid "h"
 msgstr "u"
 
-#: Components/ReviewsPage.php:251
+#: Components/ReviewsPage.php:234
 msgctxt "time-minute"
 msgid "m"
 msgstr "m"
 
-#: Components/ReviewsPage.php:252
+#: Components/ReviewsPage.php:235
 msgctxt "time-second"
 msgid "s"
 msgstr "s"
 
-#: Components/UserHeader.php:44
+#: Components/UserHeader.php:48
+msgid "Log out"
+msgstr "Uitloggen"
+
+#: Components/UserHeader.php:56
 msgid "Request A Review"
 msgstr "Een beoordeling aanvragen"
+
+#~ msgid "Get started"
+#~ msgstr "Aan de slag"

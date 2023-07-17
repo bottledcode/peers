@@ -45,7 +45,7 @@ class UserHeader
                         </div>
                         <?php if ($isMe): ?>
                             <div>
-                                <a href="#" onclick="logout()">Log out</a>
+                                <a href="#" onclick="logout()"><?= __('Log out') ?></a>
                             </div>
                         <?php endif; ?>
                     </div>
