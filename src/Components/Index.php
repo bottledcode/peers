@@ -47,7 +47,7 @@ class Index
                 // once it's loaded.
                 script.addEventListener('load', async function(){
                     await window.Clerk.load({});
-                    if(Clerk.session && location.pathname === '/') {
+                    if(Clerk.session && location.pathname === '/auth') {
                         location.href = '/reviews'
                     }
                 });
@@ -67,13 +67,18 @@ class Index
         </head>
         <Route path="/" method="GET">
             <HomePage></HomePage>
-            <LoggedInHomePage></LoggedInHomePage>
         </Route>
         <Route path="/reviews" method="GET">
             <ReviewsPage></ReviewsPage>
         </Route>
         <Route path="/review/:userId/:round" method="GET">
             <LeaveReview userId="{{:userId}}" round="{{:round}}"></LeaveReview>
+        </Route>
+        <Route path="/auth" method="GET">
+            <Loading wait="2" next="/reviews"></Loading>
+        </Route>
+        <Route path="/logout" method="GET">
+            <Loading wait="2" next="/"></Loading>
         </Route>
         <DefaultRoute>
             <ErrorPage></ErrorPage>

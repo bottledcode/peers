@@ -5,15 +5,19 @@ namespace Peers\Components;
 use Bottledcode\SwytchFramework\Template\Attributes\Authenticated;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
+use Peers\Authentication;
 
 #[Component('HomePage')]
-#[Authenticated(visible: false)]
 class HomePage
 {
     use RegularPHP;
 
+    public function __construct(private Authentication $authentication) {}
+
     public function render()
     {
+        $user = $this->authentication->getUser();
+
         $this->begin();
         ?>
         <body class="bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-50">
@@ -43,7 +47,8 @@ class HomePage
                             <?= __('A simple, asynchronous peer review tool.') ?>
                         </p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
-                            <a onclick="Clerk.openSignIn();" href="#"
+                            <a
+                                href="<?= $user === null ? getenv('SIGNIN_URL') : '/reviews' ?>"
                                class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <?= __('Get started') ?>
                             </a>

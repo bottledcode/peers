@@ -2,6 +2,7 @@
 
 namespace Peers\Components;
 
+use Bottledcode\SwytchFramework\Hooks\Html\HeadTagFilter;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
 
@@ -10,8 +11,14 @@ class UserHeader
 {
     use RegularPHP;
 
+    public function __construct(private readonly HeadTagFilter $htmlHeaders)
+    {
+    }
+
     public function render(string $firstName, string $lastName = '', string $imageUrl = '', bool $isMe = false): string
     {
+        $this->htmlHeaders->addScript('logout', '/assets/logout.js', true, true);
+
         $this->begin();
         ?>
         <div class="bg-stone-100 text-stone-900 dark:bg-stone-800 dark:text-stone-50">
@@ -36,6 +43,11 @@ class UserHeader
                         <div class="pt-2 mx-auto">
                             <h1 class="font-bold text-4xl"><?= $firstName ?> <?= $lastName ?></h1>
                         </div>
+                        <?php if ($isMe): ?>
+                            <div>
+                                <a href="#" onclick="logout()">Log out</a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <?php if (false): ?>
                         <div class="justify-stretch column-reverse flex mt-4">
