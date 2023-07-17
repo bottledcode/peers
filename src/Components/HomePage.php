@@ -2,6 +2,7 @@
 
 namespace Peers\Components;
 
+use Bottledcode\SwytchFramework\Hooks\Html\HeadTagFilter;
 use Bottledcode\SwytchFramework\Template\Attributes\Component;
 use Bottledcode\SwytchFramework\Template\Traits\RegularPHP;
 use Peers\Authentication;
@@ -11,13 +12,23 @@ class HomePage
 {
     use RegularPHP;
 
-    public function __construct(private Authentication $authentication)
+    public function __construct(private readonly Authentication $authentication, private readonly HeadTagFilter $headTagFilter)
     {
     }
 
     public function render()
     {
         $user = $this->authentication->getUser();
+
+        $this->headTagFilter->setOpenGraph(
+            pageUrl: 'https://' . $_SERVER['HTTP_HOST'],
+            title: 'Peers',
+            description: 'Peers is a peer review platform for the open source community.',
+            imageUrl: 'https://' . $_SERVER['HTTP_HOST'] . '/assets/logo-small.svg',
+            locale: 'en_US',
+        );
+
+        $this->headTagFilter->setTwitterCard('app', null, '@withinboredom');
 
         $this->begin();
         ?>
