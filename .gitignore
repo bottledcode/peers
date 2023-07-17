@@ -1,6 +1,7 @@
 /vendor/
 /.idea/
 .composer-attribute-collector/
+public/assets/web.css
 
 
 # Ignore DevSpace cache and log folder
