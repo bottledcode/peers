@@ -19,7 +19,6 @@
     "license": "MIT",
     "name": "withinboredom/peers",
     "require": {
-        "amphp/log": "v2.0.0-beta.2",
         "bottledcode/durable-php": "dev-main",
         "bottledcode/php-rql": "dev-master",
         "bottledcode/swytch-framework": "dev-main",
